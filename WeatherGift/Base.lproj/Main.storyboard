@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Location List View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="LocationListViewController" customModule="WeatherGift" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2bO-3u-0gO">
+                                <rect key="frame" x="0.0" y="734" width="375" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="8QW-wA-RY9"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem title="Edit" id="nkr-74-C1d">
+                                        <connections>
+                                            <action selector="editButtonPressed:" destination="BYZ-38-t0r" id="pb5-tr-fex"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="xZ8-W0-wUQ"/>
+                                    <barButtonItem title="Add Location" id="aoI-or-Wt4">
+                                        <connections>
+                                            <action selector="addLocationButtonPressed:" destination="BYZ-38-t0r" id="Ipm-Xf-btv"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="JTf-VX-7Yq">
+                                <rect key="frame" x="0.0" y="44" width="375" height="690"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="Cell" id="9pr-zp-fuJ" customClass="WeatherTableViewCell" customModule="WeatherGift" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="44.666666030883789" width="375" height="43.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9pr-zp-fuJ" id="eHP-ox-BNB">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Dw-3L-iyd">
+                                                    <rect key="frame" x="16" y="32.666666666666664" width="343" height="0.0"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="7Dw-3L-iyd" secondAttribute="trailing" id="hAl-ew-eG1"/>
+                                                <constraint firstItem="7Dw-3L-iyd" firstAttribute="leading" secondItem="eHP-ox-BNB" secondAttribute="leadingMargin" id="nIF-X4-EOU"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="7Dw-3L-iyd" secondAttribute="bottom" id="sGJ-jq-ZK3"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="weatherLocationLabel" destination="7Dw-3L-iyd" id="G3u-WC-FyO"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="2bO-3u-0gO" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="1qU-dr-tGt"/>
+                            <constraint firstItem="2bO-3u-0gO" firstAttribute="top" secondItem="JTf-VX-7Yq" secondAttribute="bottom" id="KC8-wI-Ka5"/>
+                            <constraint firstItem="2bO-3u-0gO" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Yjv-cL-NIE"/>
+                            <constraint firstItem="2bO-3u-0gO" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="bzg-9w-ehN"/>
+                            <constraint firstItem="JTf-VX-7Yq" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="dXD-ub-Bdu"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="JTf-VX-7Yq" secondAttribute="trailing" id="hSg-VW-2fN"/>
+                            <constraint firstItem="JTf-VX-7Yq" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="xUx-PU-YM3"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="addBarButton" destination="aoI-or-Wt4" id="YFD-Fs-wfh"/>
+                        <outlet property="editBarButton" destination="nkr-74-C1d" id="SxS-TI-CvK"/>
+                        <outlet property="tableView" destination="JTf-VX-7Yq" id="u4K-SW-0zr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="45" y="84"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
