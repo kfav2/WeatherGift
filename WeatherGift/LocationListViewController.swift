@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import GooglePlaces
 
 class LocationListViewController: UIViewController {
 
@@ -18,9 +19,9 @@ class LocationListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     
-        weatherLocations.append(WeatherLocation(name: "Town", latitude: 0, longitude: 0))
-        weatherLocations.append(WeatherLocation(name: "Town", latitude: 40, longitude: 40))
-        weatherLocations.append(WeatherLocation(name: "Shin", latitude: 100, longitude: 20))
+//        weatherLocations.append(WeatherLocation(name: "Town", latitude: 0, longitude: 0))
+//        weatherLocations.append(WeatherLocation(name: "Town", latitude: 40, longitude: 40))
+//        weatherLocations.append(WeatherLocation(name: "Shin", latitude: 100, longitude: 20))
         
         tableView.dataSource = self
         tableView.delegate = self
@@ -38,10 +39,12 @@ class LocationListViewController: UIViewController {
         }
     }
     @IBAction func addLocationButtonPressed(_ sender: UIBarButtonItem) {
-        
+        let autocompleteController = GMSAutocompleteViewController()
+         autocompleteController.delegate = self
+
+         // Display the autocomplete view controller.
+         present(autocompleteController, animated: true, completion: nil)
     }
-    
-    
 }
 
 
@@ -54,6 +57,7 @@ extension LocationListViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         cell.textLabel?.text = weatherLocations[indexPath.row].name
+        cell.detailTextLabel?.text = "Longitude: \(weatherLocations[indexPath.row].longitude), Latitude: \(weatherLocations[indexPath.row].latitude)"
         return cell
     }
     
@@ -71,3 +75,35 @@ extension LocationListViewController: UITableViewDelegate, UITableViewDataSource
     }
 }
 
+extension LocationListViewController: GMSAutocompleteViewControllerDelegate {
+
+  // Handle the user's selection.
+  func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
+    
+      let newLocation = WeatherLocation(name: place.name ?? "unknown place", latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
+      weatherLocations.append(newLocation)
+      tableView.reloadData()
+    
+    dismiss(animated: true, completion: nil)
+  }
+
+  func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
+    // TODO: handle the error.
+    print("Error: ", error.localizedDescription)
+  }
+
+  // User canceled the operation.
+  func wasCancelled(_ viewController: GMSAutocompleteViewController) {
+    dismiss(animated: true, completion: nil)
+  }
+
+  // Turn the network activity indicator on and off again.
+  func didRequestAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
+    UIApplication.shared.isNetworkActivityIndicatorVisible = true
+  }
+
+  func didUpdateAutocompletePredictions(_ viewController: GMSAutocompleteViewController) {
+    UIApplication.shared.isNetworkActivityIndicatorVisible = false
+  }
+
+}
