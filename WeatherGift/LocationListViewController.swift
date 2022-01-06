@@ -10,19 +10,17 @@ import UIKit
 class LocationListViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
-    
-    var weatherLocations: [WeatherLocation] = []
     @IBOutlet weak var editBarButton: UIBarButtonItem!
     @IBOutlet weak var addBarButton: UIBarButtonItem!
     
+    var weatherLocations: [WeatherLocation] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let  weatherLocation = WeatherLocation(name: "Town", latitude: 0, longitude: 0)
-        weatherLocations.append(weatherLocation)
+    
+        weatherLocations.append(WeatherLocation(name: "Town", latitude: 0, longitude: 0))
         weatherLocations.append(WeatherLocation(name: "Town", latitude: 40, longitude: 40))
         weatherLocations.append(WeatherLocation(name: "Shin", latitude: 100, longitude: 20))
-        
         
         tableView.dataSource = self
         tableView.delegate = self
@@ -64,7 +62,6 @@ extension LocationListViewController: UITableViewDelegate, UITableViewDataSource
            weatherLocations.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
-        
     }
     
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
