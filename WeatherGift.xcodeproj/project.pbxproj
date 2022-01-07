@@ -17,6 +17,7 @@
 		9049C43527862EC800A23079 /* WeatherLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9049C43427862EC800A23079 /* WeatherLocation.swift */; };
 		9049C437278635A300A23079 /* WeatherTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9049C436278635A200A23079 /* WeatherTableViewCell.swift */; };
 		90D55A832787A1F90053CD44 /* APIkeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D55A822787A1F90053CD44 /* APIkeys.swift */; };
+		90D55A852787C5E40053CD44 /* LocationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D55A842787C5E40053CD44 /* LocationDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		9049C43427862EC800A23079 /* WeatherLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherLocation.swift; sourceTree = "<group>"; };
 		9049C436278635A200A23079 /* WeatherTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherTableViewCell.swift; sourceTree = "<group>"; };
 		90D55A822787A1F90053CD44 /* APIkeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIkeys.swift; sourceTree = "<group>"; };
+		90D55A842787C5E40053CD44 /* LocationDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailViewController.swift; sourceTree = "<group>"; };
 		B6776104F6873253E7439024 /* Pods-WeatherGift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherGift.release.xcconfig"; path = "Target Support Files/Pods-WeatherGift/Pods-WeatherGift.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -72,6 +74,7 @@
 				9049C42027862EA700A23079 /* AppDelegate.swift */,
 				9049C42227862EA700A23079 /* SceneDelegate.swift */,
 				9049C43427862EC800A23079 /* WeatherLocation.swift */,
+				90D55A842787C5E40053CD44 /* LocationDetailViewController.swift */,
 				9049C42427862EA700A23079 /* LocationListViewController.swift */,
 				9049C436278635A200A23079 /* WeatherTableViewCell.swift */,
 				9049C42627862EA700A23079 /* Main.storyboard */,
@@ -217,6 +220,7 @@
 			files = (
 				90D55A832787A1F90053CD44 /* APIkeys.swift in Sources */,
 				9049C437278635A300A23079 /* WeatherTableViewCell.swift in Sources */,
+				90D55A852787C5E40053CD44 /* LocationDetailViewController.swift in Sources */,
 				9049C42527862EA700A23079 /* LocationListViewController.swift in Sources */,
 				9049C43527862EC800A23079 /* WeatherLocation.swift in Sources */,
 				9049C42127862EA700A23079 /* AppDelegate.swift in Sources */,
