@@ -22,10 +22,21 @@ class LocationListViewController: UIViewController {
         
         tableView.dataSource = self
         tableView.delegate = self
+        
+    }
+    
+    func saveLocations() {
+        let encoder = JSONEncoder()
+        if let encoded = try? encoder.encode(weatherLocations) {
+            UserDefaults.standard.set(encoded, forKey: "weatherLocations")
+        } else {
+            print("ERROR: Saving encoded didn't work!")
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         selectedLocationIndex = tableView.indexPathForSelectedRow!.row
+        saveLocations() 
     }
     
     @IBAction func editButtonPressed(_ sender: UIBarButtonItem) {
@@ -39,7 +50,7 @@ class LocationListViewController: UIViewController {
             addBarButton.isEnabled = false
         }
     }
-    @IBAction func addLocationButtonPressed(_ sender: UIBarButtonItem) {
+    @IBAction func addLocationPressed(_ sender: UIBarButtonItem) {
         let autocompleteController = GMSAutocompleteViewController()
          autocompleteController.delegate = self
 

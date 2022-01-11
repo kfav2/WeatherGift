@@ -13,11 +13,11 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="LocationListViewController" customModule="WeatherGift" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="428" height="872"/>
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2bO-3u-0gO">
-                                <rect key="frame" x="0.0" y="794" width="428" height="44"/>
+                                <rect key="frame" x="0.0" y="848" width="428" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="8QW-wA-RY9"/>
                                 </constraints>
@@ -30,13 +30,13 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="xZ8-W0-wUQ"/>
                                     <barButtonItem title="Add Location" id="aoI-or-Wt4">
                                         <connections>
-                                            <action selector="addLocationButtonPressed:" destination="BYZ-38-t0r" id="Ipm-Xf-btv"/>
+                                            <action selector="addLocationPressed:" destination="BYZ-38-t0r" id="ySv-1b-yk7"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
                             </toolbar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="JTf-VX-7Yq">
-                                <rect key="frame" x="0.0" y="0.0" width="428" height="794"/>
+                                <rect key="frame" x="0.0" y="44" width="428" height="804"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="Cell" textLabel="y3N-Yn-cd9" detailTextLabel="t5M-nt-iDD" style="IBUITableViewCellStyleSubtitle" id="9pr-zp-fuJ" customClass="WeatherTableViewCell" customModule="WeatherGift" customModuleProvider="target">
@@ -110,7 +110,7 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="Uw0-Um-uKl"/>
                                     <barButtonItem title=" " image="list.bullet" catalog="system" id="lLM-e1-Plr">
                                         <connections>
-                                            <segue destination="BYZ-38-t0r" kind="presentation" id="9Sw-rR-Lld"/>
+                                            <segue destination="BYZ-38-t0r" kind="presentation" modalPresentationStyle="fullScreen" id="9Sw-rR-Lld"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
