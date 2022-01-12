@@ -37,6 +37,7 @@ class LocationDetailViewController: UIViewController {
         pageControl.numberOfPages = pageViewController.weatherLocations.count
         pageControl.currentPage = locationIndex
         
+        weatherLocation.getData()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
