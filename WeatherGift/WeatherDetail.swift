@@ -7,30 +7,57 @@
 
 import Foundation
 
+private let dateFormatter: DateFormatter = {
+    print("date formatter created")
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "EEEE"
+    return dateFormatter
+}()
+
+struct DailyWeather {
+    var dailyIcon: String
+    var dailyWeekday: String
+    var dailySummary: String
+    var dailyHigh: Int
+    var dailyLow: Int
+}
+
 class WeatherDetail: WeatherLocation {
     
-    struct Result: Codable {
+    private struct Result: Codable {
         var timezone: String
         var current: Current
-        
+        var daily: [Daily]
     }
     
-    struct Current: Codable {
+    private struct Current: Codable {
         var dt: TimeInterval
         var temp: Double
         var weather: [Weather]
     }
     
-    struct Weather: Codable {
+    private struct Weather: Codable {
         var description: String
         var icon: String
+    }
+    
+    private struct Daily: Codable {
+        var dt: TimeInterval
+        var temp: Temp
+        var weather: [Weather]
+    }
+    
+    private struct Temp: Codable {
+        var max: Double
+        var min: Double
     }
     
     var timezone = ""
     var currentTime = 0.0
     var temperature = 0
     var summary = ""
-    var dailyIcon = ""
+    var dayIcon = ""
+    var dailyWeatherData: [DailyWeather] = []
     
     // Getting data via URLSession
     func getData(completed : @escaping () -> ()) {
@@ -62,8 +89,19 @@ class WeatherDetail: WeatherLocation {
                 self.currentTime = result.current.dt
                 self.temperature = Int(result.current.temp.rounded())
                 self.summary = result.current.weather[0].description
-                self.dailyIcon = self.fileNameForIcon(icon: result.current.weather[0].icon)
-                
+                self.dayIcon = self.fileNameForIcon(icon: result.current.weather[0].icon)
+                for index in 0..<result.daily.count {
+                    let weekdayDate = Date(timeIntervalSince1970: result.daily[index].dt)
+                    dateFormatter.timeZone = TimeZone(identifier: result.timezone)
+                    let dailyWeekday = dateFormatter.string(from: weekdayDate)
+                    let dailyIcon = self.fileNameForIcon(icon: result.daily[index].weather[0].icon)
+                    let dailySummary = result.daily[index].weather[0].description
+                    let dailyHigh = Int(result.daily[index].temp.max.rounded())
+                    let dailyLow = Int(result.daily[index].temp.min.rounded())
+                    let dailyWeahter = DailyWeather(dailyIcon: dailyIcon, dailyWeekday: dailyWeekday, dailySummary: dailySummary, dailyHigh: dailyHigh, dailyLow: dailyLow)
+                    self.dailyWeatherData.append(dailyWeahter)
+                    print(dailyWeekday, dailyLow, dailyHigh)
+                }
             } catch {
                 print("JSON ERROR: \(error.localizedDescription)")
             }
@@ -96,7 +134,6 @@ class WeatherDetail: WeatherLocation {
         default:
             newFileName = ""
         }
-        print(newFileName)
         return newFileName
     }
 }
