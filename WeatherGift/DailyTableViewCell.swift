@@ -19,8 +19,8 @@ class DailyTableViewCell: UITableViewCell {
                 dailyImageView.image = UIImage(named: dailyWeather.dailyIcon)
                 dailyWeekdayLabel.text = dailyWeather.dailyWeekday
                 dailySummaryView.text = dailyWeather.dailySummary
-                dailyHighLabel.text = "\(dailyWeather.dailyHigh)"
-                dailyLowLabel.text = "\(dailyWeather.dailyLow)"
+                dailyHighLabel.text = "\(dailyWeather.dailyHigh)°"
+                dailyLowLabel.text = "\(dailyWeather.dailyLow)°"
             }
         }
     }
