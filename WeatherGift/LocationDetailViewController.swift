@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 private let dateFormatter: DateFormatter = {
     let dateFormatter = DateFormatter()
@@ -27,6 +28,7 @@ class LocationDetailViewController: UIViewController {
     
     var weatherDetail: WeatherDetail!
     var locationIndex = 0
+    var locationManager: CLLocationManager!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +43,11 @@ class LocationDetailViewController: UIViewController {
         tableView.dataSource = self
         collectionView.delegate = self
         collectionView.dataSource = self
+        
+        if locationIndex == 0 {
+            getLocation()
+        }
+        
         updateUserInterface()
     }
     
@@ -123,5 +130,67 @@ extension LocationDetailViewController: UICollectionViewDelegate, UICollectionVi
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return weatherDetail.hourlyWeatherData.count
+    }
+}
+
+extension LocationDetailViewController: CLLocationManagerDelegate {
+    
+    func getLocation() {
+        // creating a CLLocation manager will automatically check authorization
+        locationManager = CLLocationManager()
+        locationManager.delegate = self
+    }
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        print("Checking authorization status.")
+        handleAuthenticationStatus(status: status)
+    }
+    
+    func handleAuthenticationStatus(status: CLAuthorizationStatus) {
+        switch status {
+        case .notDetermined:
+            locationManager.requestWhenInUseAuthorization()
+        case .restricted:
+            self.oneButtonAlert(title: "Location Services Denied", message: "It may be that parental controls are restricting location use in this app.")
+        case .denied:
+            break
+        case .authorizedAlways, .authorized, .authorizedWhenInUse:
+            locationManager.requestLocation()
+        @unknown default:
+            print("DEVELOPER ALERT: Unknown case of status is handleAutheticationStatus\(status)")
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        print("Updating Location")
+        // locations is an array of possible current locations and this gets the last element. CLL() gives you a fake CLL so that it won't crash
+        let currentLocation = locations.last ?? CLLocation()
+        
+        print("Current Location is \(currentLocation.coordinate.latitude),\(currentLocation.coordinate.longitude)")
+        
+        let geocode = CLGeocoder()
+        geocode.reverseGeocodeLocation(currentLocation) { (placemarks, error) in
+            var locationName = ""
+            if placemarks != nil {
+                // get the first placemark
+                let placemark = placemarks?.last
+                // assign placemark to location name
+                locationName = placemark?.name ?? "Parts Unknown"
+            } else {
+                print("ERROR: error retrieving place.")
+                locationName = "Could not find location name"
+            }
+            print("Location name = \(locationName)")
+            // update weathreLocations[0] with the current location so it can be used in updateUserInterface. getLocation is only called when weatherLocation == 0
+            let pageViewController = UIApplication.shared.windows.first!.rootViewController as! PageViewController
+            pageViewController.weatherLocations[self.locationIndex].latitude = currentLocation.coordinate.latitude
+            pageViewController.weatherLocations[self.locationIndex].longitude = currentLocation.coordinate.longitude
+            pageViewController.weatherLocations[self.locationIndex].name = locationName
+            self.updateUserInterface()
+        }
+        
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("ERROR: \(error.localizedDescription). Failed to get device l ocation.")
     }
 }

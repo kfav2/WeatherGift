@@ -115,11 +115,11 @@
                                     <constraint firstAttribute="height" constant="44" id="qsz-pd-O3e"/>
                                 </constraints>
                                 <items>
-                                    <barButtonItem title="About" id="5ft-xw-3g9"/>
+                                    <barButtonItem title="About" width="68" id="5ft-xw-3g9"/>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="LsF-sV-Yhx"/>
                                     <barButtonItem style="plain" id="QAV-cK-s5N">
                                         <pageControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" id="y1n-V6-V83">
-                                            <rect key="frame" x="51" y="9" width="276" height="26"/>
+                                            <rect key="frame" x="73" y="9" width="238" height="26"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="pageIndicatorTintColor" red="0.1802102156" green="0.76859849690000004" blue="0.70776513679999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <color key="currentPageIndicatorTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
