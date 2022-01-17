@@ -84,10 +84,12 @@ class LocationDetailViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let destination = segue.destination as! LocationListViewController
-        let pageViewController = UIApplication.shared.windows.first!.rootViewController as! PageViewController
-        //let selectedIndexPath = tableView.indexPathForSelectedRow!
-        destination.weatherLocations = pageViewController.weatherLocations
+        if segue.identifier == "ShowList" {
+            let destination = segue.destination as! LocationListViewController
+            let pageViewController = UIApplication.shared.windows.first!.rootViewController as! PageViewController
+            //let selectedIndexPath = tableView.indexPathForSelectedRow!
+            destination.weatherLocations = pageViewController.weatherLocations
+        }
     }
     
     @IBAction func unwindFromLocationListViewController(segue: UIStoryboardSegue) {

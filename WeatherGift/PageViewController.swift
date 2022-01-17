@@ -36,7 +36,7 @@ class PageViewController: UIPageViewController {
         }
         //TODO: Get user location for first element in weatherLocations
         if weatherLocations.isEmpty {
-            weatherLocations.append(WeatherLocation(name: "CURRENT LOCATION", latitude: 20.20, longitude: 20.20))
+            weatherLocations.append(WeatherLocation(name: "", latitude: 20.20, longitude: 20.20))
         }
     }
     
